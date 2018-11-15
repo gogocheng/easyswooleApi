@@ -1,0 +1,1 @@
+18-11-15 22:17:45:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[14] message:[Class App\HttpController\Api\Index contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (EasySwoole\Core\Http\AbstractInterface\Controller::index)]

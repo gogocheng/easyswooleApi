@@ -1,0 +1,2 @@
+[2018-11-15 22:17:46 *4299.2]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Class App\HttpController\Api\Index contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (EasySwoole\Core\Http\AbstractInterface\Controller::index) in /var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php on line 14.
+[2018-11-15 22:17:46 $4287.0]	WARNING	swManager_check_exit_status: worker#2 abnormal exit, status=255, signal=0
