@@ -1,1 +1,17 @@
 18-11-15 22:17:45:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[14] message:[Class App\HttpController\Api\Index contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (EasySwoole\Core\Http\AbstractInterface\Controller::index)]
+18-11-16 22:10:50:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[38] message:[Use of undefined constant test - assumed 'test' (this will throw an Error in a future version of PHP)]
+18-11-16 22:10:52:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[38] message:[Use of undefined constant test - assumed 'test' (this will throw an Error in a future version of PHP)]
+18-11-16 22:10:52:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[38] message:[Use of undefined constant test - assumed 'test' (this will throw an Error in a future version of PHP)]
+18-11-16 22:10:53:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[38] message:[Use of undefined constant test - assumed 'test' (this will throw an Error in a future version of PHP)]
+18-11-16 22:10:53:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[38] message:[Use of undefined constant test - assumed 'test' (this will throw an Error in a future version of PHP)]
+18-11-16 22:10:53:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[38] message:[Use of undefined constant test - assumed 'test' (this will throw an Error in a future version of PHP)]
+18-11-16 22:10:53:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[38] message:[Use of undefined constant test - assumed 'test' (this will throw an Error in a future version of PHP)]
+18-11-16 22:29:52:Error at file[/var/www/html/swoole/easyswoole/EasySwooleEvent.php] line[29] message:[Uncaught Error: Class 'EasySwoole\Di' not found in /var/www/html/swoole/easyswoole/EasySwooleEvent.php:29
+Stack trace:
+#0 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/src/Core/Swoole/ServerManager.php(130): EasySwoole\EasySwooleEvent::mainServerCreate(Object(EasySwoole\Core\Swoole\ServerManager), Object(EasySwoole\Core\Swoole\EventRegister))
+#1 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/src/Core/Swoole/ServerManager.php(61): EasySwoole\Core\Swoole\ServerManager->createMainServer()
+#2 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/src/Core/Core.php(45): EasySwoole\Core\Swoole\ServerManager->start()
+#3 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/bin/easyswoole(326): EasySwoole\Core\Core->run()
+#4 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/bin/easyswoole(25): serverStart(Array)
+#5 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/bin/easyswoole(462): commandHandler()
+#6 /var/www/html/swoole/easyswoole/easyswoole(2): req]

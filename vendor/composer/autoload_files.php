@@ -10,4 +10,6 @@ return array(
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     'bd9634f2d41831496de0d3dfe4c94881' => $vendorDir . '/symfony/polyfill-php56/bootstrap.php',
     '253c157292f75eb38082b5acb06f3f01' => $vendorDir . '/nikic/fast-route/src/functions.php',
+    '9c9a81795c809f4710dd20bec1e349df' => $vendorDir . '/joshcam/mysqli-database-class/MysqliDb.php',
+    '94df122b6b32ca0be78d482c26e5ce00' => $vendorDir . '/joshcam/mysqli-database-class/dbObject.php',
 );
