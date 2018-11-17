@@ -15,3 +15,4 @@ Stack trace:
 #4 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/bin/easyswoole(25): serverStart(Array)
 #5 /var/www/html/swoole/easyswoole/vendor/easyswoole/easyswoole/bin/easyswoole(462): commandHandler()
 #6 /var/www/html/swoole/easyswoole/easyswoole(2): req]
+18-11-17 16:05:30:Error at file[/var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php] line[64] message:[Undefined variable: res]

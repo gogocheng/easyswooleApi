@@ -14,13 +14,17 @@ use EasySwoole\Core\Http\AbstractInterface\Controller;
 use App\HttpController\Api\Base;
 use App\Lib\Redis\Redis;
 
+
 class Index extends Base
 {
 //    public function index ()
 //    {
 ////        // TODO: Implement index() method.
 //    }
-
+    /**
+     * description  demo测试，json输出
+     * @return bool
+     */
     public function test ()
     {
         $data = [
@@ -31,13 +35,20 @@ class Index extends Base
         return $this -> writeJson(200, 'success', $data);
     }
 
+    /**
+     * description   mysql  测试
+     * @return bool
+     */
     public function testMysql ()
     {
         $db = Di ::getInstance() -> get("MYSQL");
         $res = $db -> where('username', "admin") -> getOne("ck_user");
         return $this -> writeJson(200, 'success', $res);
     }
-
+    /**
+     * description  redis 测试
+     * @return bool
+     */
     public function getRedis ()
     {
 //        $redis = new \Redis();
@@ -47,5 +58,25 @@ class Index extends Base
         //注入后
         $res = Di ::getInstance() -> get("REDIS") -> get("test");
         return $this -> writeJson(200, 'success', $res);
+    }
+
+    /**
+     * description  yaconf 测试
+     * @return bool
+     */
+    public function yaconf ()
+    {
+        $res = \Yaconf ::get('redis');
+        return $this -> writeJson(200, 'success', $res);
+    }
+
+    /**
+     * description REDIS队列测试
+     */
+    public function pub ()
+    {
+        $params = $this -> request() -> getRequestParam();
+        Di ::getInstance() -> get("REDIS") -> rPush("es_test_list", $params['num']);
+//        return $this -> writeJson(200, 'success', $res);
     }
 }
