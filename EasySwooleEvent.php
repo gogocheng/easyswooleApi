@@ -46,10 +46,10 @@ Class EasySwooleEvent implements EventInterface
         // TODO: Implement mainServerCreate() method.
         //mysql
         Di ::getInstance() -> set('MYSQL', \MysqliDb::class, Array (
-                'host' => '192.168.1.10',
+                'host' => '192.168.1.39',
                 'username' => 'root',
-                'password' => 'password',
-                'db' => 'cangku',
+                'password' => '123456',
+                'db' => 'video',
                 'port' => 3306,
                 'charset' => 'utf8' )
         );
