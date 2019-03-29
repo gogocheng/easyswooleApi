@@ -13,6 +13,7 @@ use EasySwoole\Core\Component\Di;
 use EasySwoole\Core\Http\AbstractInterface\Controller;
 use App\HttpController\Api\Base;
 use App\Lib\Redis\Redis;
+use App\Model\Video as videoModel;
 
 
 class Index extends Base
@@ -21,6 +22,24 @@ class Index extends Base
 //    {
 ////        // TODO: Implement index() method.
 //    }
+
+    /**
+     * description   首页分页列表
+     * @throws \Exception
+     */
+    public function lists ()
+    {
+        $params = $this -> request() -> getRequestParam();
+        //page 1
+        //size 10
+        //cat_id 1
+        //count  查询
+        //lists
+        $videoModel = new videoModel();
+        $videoModel -> getVideoData([],1,5);
+
+    }
+
     /**
      * description  demo测试，json输出
      * @return bool
@@ -45,6 +64,7 @@ class Index extends Base
         $res = $db -> where('username', "admin") -> getOne("ck_user");
         return $this -> writeJson(200, 'success', $res);
     }
+
     /**
      * description  redis 测试
      * @return bool
