@@ -14,6 +14,7 @@ use EasySwoole\Core\Http\AbstractInterface\Controller;
 use App\HttpController\Api\Base;
 use App\Lib\Redis\Redis;
 use App\Model\Video as videoModel;
+use EasySwoole\Core\Http\Message\Status;
 
 
 class Index extends Base
@@ -24,19 +25,56 @@ class Index extends Base
 //    }
 
     /**
-     * description   首页分页列表
+     * description   首页分页列表  第一套:原始方案，读取mysql数据
      * @throws \Exception
      */
-    public function lists ()
+    public function lists0 ()
     {
-        $params = $this -> request() -> getRequestParam();
+//        $params = $this -> request() -> getRequestParam();
+//        $page = !empty($params['page']) ? intval($params['page']) : 1;
+//        $size = !empty($params['size']) ? intval($params['size']) : 5;
+        $condition = [];
+        if (!empty($this -> params['cat_id'])) {
+            $condition['cat_id'] = intval($this -> params['cat_id']);
+        }
         //page 1
         //size 10
         //cat_id 1
         //count  查询
         //lists
-        $videoModel = new videoModel();
-        $videoModel -> getVideoData([],1,5);
+        try {
+            $videoModel = new videoModel();
+            $data = $videoModel -> getVideoData($condition, $this -> params['page'], $this -> params['size']);
+        } catch (\Exception $e) {
+            return $this -> writeJson(Status::CODE_BAD_REQUEST, "服务异常");
+        }
+        if (!empty($data['lists'])) {
+            foreach ($data['lists'] as &$list) {
+                $list['create_time'] = date("Y-m-d H:i:s", $list['create_time']);
+                //视频时长  00:01:07
+                $list['video_duration'] = gmstrftime("%H:%M:%S", $list['video_duration']);
+            }
+        }
+        return $this -> writeJson(Status::CODE_OK, "OK", $data);
+
+    }
+
+    /**
+     * description  第二套方案：读取静态缓存数据
+     * @return bool
+     */
+    public function lists ()
+    {
+        $catId = !empty($this -> params['cat_id']) ? intval($this -> params['cat_id']) : 0;
+        //文件路径
+        $videoFile = EASYSWOOLE_ROOT . "/webroot/video/json/" . $catId . ".json";
+        //判断文件是否存在，如果存在，获取json文件
+        $videoData = is_file($videoFile) ? file_get_contents($videoFile) : [];
+        $videoData = !empty($videoData) ? json_decode($videoData, true) : [];
+        $count = count($videoData);
+
+        //返回分页数据
+        return $this -> writeJson(Status::CODE_OK, "OK", $this -> getPagingDatas($count, $videoData));
 
     }
 

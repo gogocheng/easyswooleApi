@@ -8,9 +8,11 @@
 
 namespace EasySwoole;
 
+use App\Lib\Cache\Video;
 use App\Lib\Process\ConsumerTest;
 use App\Lib\Redis\Redis;
 use \EasySwoole\Core\AbstractInterface\EventInterface;
+use EasySwoole\Core\Component\Crontab\CronTab;
 use \EasySwoole\Core\Swoole\ServerManager;
 use \EasySwoole\Core\Swoole\EventRegister;
 use \EasySwoole\Core\Http\Request;
@@ -61,6 +63,13 @@ Class EasySwooleEvent implements EventInterface
         for ($i = 0; $i < $allNum; $i++) {
             ProcessManager ::getInstance() -> addProcess("consumer_{$i}", ConsumerTest::class);
         }
+        //调用crontab做定时任务
+        $cacheVideoObj = new Video();  //实例化缓存类
+        CronTab ::getInstance()
+            -> addRule("test_crontab", "*/1 * * * *", function () use ($cacheVideoObj) {
+                $cacheVideoObj -> setIndexVideo();
+            });
+
     }
 
     public static function onRequest (Request $request, Response $response): void
