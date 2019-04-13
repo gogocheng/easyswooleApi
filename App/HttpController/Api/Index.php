@@ -9,6 +9,7 @@
 namespace App\HttpController\Api;
 
 
+use EasySwoole\Core\Component\Cache\Cache;
 use EasySwoole\Core\Component\Di;
 use EasySwoole\Core\Http\AbstractInterface\Controller;
 use App\HttpController\Api\Base;
@@ -66,13 +67,26 @@ class Index extends Base
     public function lists ()
     {
         $catId = !empty($this -> params['cat_id']) ? intval($this -> params['cat_id']) : 0;
+        //读取table中数据
+//        $videoData = Cache ::getInstance() -> get("video_cache_data" . $catId);
+        //读取redis缓存
+//        $videoData = Di ::getInstance() -> get("REDIS") -> get("video_cache_data" . $catId);
+//        $videoData = !empty($videoData) ? $videoData : [];
         //文件路径
-        $videoFile = EASYSWOOLE_ROOT . "/webroot/video/json/" . $catId . ".json";
-        //判断文件是否存在，如果存在，获取json文件
-        $videoData = is_file($videoFile) ? file_get_contents($videoFile) : [];
-        $videoData = !empty($videoData) ? json_decode($videoData, true) : [];
-        $count = count($videoData);
+//        $videoFile = EASYSWOOLE_ROOT . "/webroot/video/json/" . $catId . ".json";
+//        //判断文件是否存在，如果存在，获取json文件
+//        $videoData = is_file($videoFile) ? file_get_contents($videoFile) : [];
+//        $videoData = !empty($videoData) ? json_decode($videoData, true) : [];
+        try {
+            //统一获取
+            $videoCache = new \App\Lib\Cache\Video();
+            $videoData = $videoCache -> getCache($catId);
+        } catch (\Exception $e) {
+            return $this -> writeJson(Status::CODE_BAD_REQUEST, "请求失败");
+        }
 
+        $videoData = !empty($videoData) ? $videoData : [];
+        $count = count($videoData);
         //返回分页数据
         return $this -> writeJson(Status::CODE_OK, "OK", $this -> getPagingDatas($count, $videoData));
 
@@ -125,7 +139,9 @@ class Index extends Base
     public function yaconf ()
     {
         $res = \Yaconf ::get('redis');
-        return $this -> writeJson(200, 'success', $res);
+        $catIds = \Yaconf ::get('category.cats');
+        print_r(array_keys($catIds));
+        return $this -> writeJson(200, 'success', $catIds);
     }
 
     /**

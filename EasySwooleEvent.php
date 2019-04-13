@@ -18,6 +18,7 @@ use \EasySwoole\Core\Swoole\EventRegister;
 use \EasySwoole\Core\Http\Request;
 use \EasySwoole\Core\Http\Response;
 use EasySwoole\Core\Component\Di;
+use EasySwoole\Core\Swoole\Time\Timer;
 use EasySwoole\Core\Utility\File;
 use EasySwoole\Core\Swoole\Process\ProcessManager;
 
@@ -65,10 +66,17 @@ Class EasySwooleEvent implements EventInterface
         }
         //调用crontab做定时任务
         $cacheVideoObj = new Video();  //实例化缓存类
-        CronTab ::getInstance()
-            -> addRule("test_crontab", "*/1 * * * *", function () use ($cacheVideoObj) {
+//        CronTab ::getInstance()
+//            -> addRule("test_crontab", "*/1 * * * *", function () use ($cacheVideoObj) {
+//                $cacheVideoObj -> setIndexVideo();
+//            });
+        //调用easyswoole中封装的swoole的swoole定时器，达到毫秒级
+        $register -> add(EventRegister::onWorkerStart, function (\ swoole_server $server, $workerId) use ($cacheVideoObj) {
+            Timer ::loop(1000, function () use ($cacheVideoObj) {
                 $cacheVideoObj -> setIndexVideo();
             });
+        });
+
 
     }
 

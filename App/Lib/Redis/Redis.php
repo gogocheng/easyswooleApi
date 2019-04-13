@@ -57,6 +57,24 @@ class Redis
         $res = $this -> redis -> get($key);
         return $res;
     }
+    /**
+     * description   redis   set
+     * @param $key
+     * @return bool|string
+     */
+    public function set ($key, $value, $time = 0)
+    {
+        if (empty($key)) {
+            return '';
+        }
+        if (is_array($value)) {
+            return $this -> redis -> set($key, $value);
+        }
+        if (!$time) {
+            return $this -> redis -> setex($key, $value, $time);
+        }
+        return $this -> redis -> setex($key, $value, $time);
+    }
 
     /**
      * description  redis   lpop
@@ -78,12 +96,12 @@ class Redis
      * @param $value
      * @return bool|int|string
      */
-    public function rPush ($key,$value)
+    public function rPush ($key, $value)
     {
         if (empty($key)) {
             return "";
         }
-        $res = $this -> redis -> rPush($key,$value);
+        $res = $this -> redis -> rPush($key, $value);
         return $res;
     }
 }

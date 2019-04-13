@@ -1,2 +1,25 @@
 [2018-11-15 22:17:46 *4299.2]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Class App\HttpController\Api\Index contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (EasySwoole\Core\Http\AbstractInterface\Controller::index) in /var/www/html/swoole/easyswoole/App/HttpController/Api/Index.php on line 14.
 [2018-11-15 22:17:46 $4287.0]	WARNING	swManager_check_exit_status: worker#2 abnormal exit, status=255, signal=0
+[2019-04-13 10:54:55 ^2548.12]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:23 ^2587.12]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:23 ^2583.8]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:23 ^2589.14]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:23 ^2590.15]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:23 ^2586.11]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:23 ^2584.9]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:23 ^2585.10]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:25 ^2616.14]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:25 ^2618.8]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:25 ^2615.9]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:25 ^2617.12]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 11:05:25 ^2620.15]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 15:50:21 ^3853.12]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 15:50:21 ^3852.11]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 15:50:21 ^3856.15]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 15:50:21 ^3855.14]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 15:50:21 ^3850.9]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 15:50:21 ^3851.10]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 15:50:22 ^3876.9]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 16:11:30 ^4070.15]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 16:11:30 ^4066.11]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
+[2019-04-13 16:12:10 ^4093.12]	NOTICE	zm_deactivate_swoole (ERROR 9003): worker process is terminated by exit()/die().
