@@ -70,7 +70,7 @@ class Index extends Base
         //读取table中数据
 //        $videoData = Cache ::getInstance() -> get("video_cache_data" . $catId);
         //读取redis缓存
-//        $videoData = Di ::getInstance() -> get("REDIS") -> get("video_cache_data" . $catId);
+//        $videoData = Di ::getInstance() -> get("REDIS") -> get((new \App\Lib\Cache\Video()) -> getCatKey($catId));
 //        $videoData = !empty($videoData) ? $videoData : [];
         //文件路径
 //        $videoFile = EASYSWOOLE_ROOT . "/webroot/video/json/" . $catId . ".json";
@@ -86,9 +86,9 @@ class Index extends Base
         }
 
         $videoData = !empty($videoData) ? $videoData : [];
-        $count = count($videoData);
+//        $count = count($videoData);
         //返回分页数据
-        return $this -> writeJson(Status::CODE_OK, "OK", $this -> getPagingDatas($count, $videoData));
+        return $this -> writeJson(Status::CODE_OK, "OK", $videoData);
 
     }
 
@@ -127,8 +127,10 @@ class Index extends Base
 //        $redis -> connect('127.0.0.1', 6379, 20);
 //        $redis -> set('kk', 100);
 //        $res = Redis ::getInstance() -> get("test");
+        $data = [ 1, 2, 3 ];
         //注入后
-        $res = Di ::getInstance() -> get("REDIS") -> get("test");
+        $flag = Di ::getInstance() -> get("REDIS") -> set("myself", $data);
+        $res = Di ::getInstance() -> get("REDIS") -> get("myself");
         return $this -> writeJson(200, 'success', $res);
     }
 

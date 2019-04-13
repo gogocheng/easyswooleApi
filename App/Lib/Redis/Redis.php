@@ -57,23 +57,23 @@ class Redis
         $res = $this -> redis -> get($key);
         return $res;
     }
+
     /**
      * description   redis   set
      * @param $key
      * @return bool|string
      */
-    public function set ($key, $value, $time = 0)
-    {
-        if (empty($key)) {
+    public function set($key, $value, $time = 0) {
+        if(empty($key)) {
             return '';
         }
-        if (is_array($value)) {
-            return $this -> redis -> set($key, $value);
+        if(is_array($value)) {
+            $value = json_encode($value);
         }
-        if (!$time) {
-            return $this -> redis -> setex($key, $value, $time);
+        if(!$time) {
+            return $this->redis->set($key, $value);
         }
-        return $this -> redis -> setex($key, $value, $time);
+        return $this->redis->setex($key, $time, $value);
     }
 
     /**

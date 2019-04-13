@@ -34,7 +34,7 @@ class ConsumerTest extends AbstractProcess
                         $task = Di::getInstance()->get('REDIS')->lPop('es_test_list');
 
                         if($task){
-                            var_dump($this->getProcessName()."--".$task);
+//                            var_dump($this->getProcessName()."--".$task);
                             // do you task
                             //写入log
                             Logger::getInstance()->log($this->getProcessName()."--".$task);

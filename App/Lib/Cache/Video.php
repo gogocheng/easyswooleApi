@@ -83,7 +83,8 @@ class Video
 //            }
 
             //redis写入缓存
-//            Di ::getInstance() -> get("REDIS") -> set("video_cache_data" . $catId, $data);
+//            Di ::getInstance() -> get("REDIS") -> set($this -> getCatKey($catId), $data);
+//            print_r(Di ::getInstance() -> get("REDIS"));
 
         }
     }
@@ -131,7 +132,7 @@ class Video
                 $videoData = !empty($videoData) ? $videoData : [];
                 break;
             case 'redis':
-                $videoData = Di ::getInstance() -> get("redis") -> get($this -> getCatKey($catId));
+                $videoData = Di ::getInstance() -> get("REDIS") -> get($this -> getCatKey($catId));
                 $videoData = !empty($videoData) ? json_decode($videoData, true) : [];
                 break;
             default:
