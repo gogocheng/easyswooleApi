@@ -9,7 +9,9 @@
 namespace App\HttpController\Api;
 
 
+use EasySwoole\Core\Component\Di;
 use EasySwoole\Core\Component\Logger;
+use EasySwoole\Core\Swoole\Task\TaskManager;
 use EasySwoole\Core\Utility\Validate\Rule;
 use EasySwoole\Core\Http\Message\Status;
 use EasySwoole\Core\Utility\Validate\Rules;
@@ -45,17 +47,33 @@ class Video extends Base
 
         // 播放数统计逻辑
         // 投放task异步任务
-//        TaskManager ::async(function () use ($id) {
-//            // 逻辑
-//            //sleep(10);
-//            // redis
-//
-//            $res = Di ::getInstance() -> get("REDIS") -> zincrby(\Yaconf ::get("redis.video_play_key"), 1, $id);
-//
-//            // 按天记录
-//        });
-
+        TaskManager ::async(function () use ($id) {
+            //逻辑,异步利用redis有序集合每次加1
+//            sleep(10);
+            Di ::getInstance() -> get("REDIS") -> zincrby(\Yaconf ::get('redis.video_play'), 1, $id);
+        });
         return $this -> writeJson(200, 'OK', $video);
+    }
+
+    /**
+     * description   排行榜   今日，本周，月
+     * @return array
+     */
+    public function rank ()
+    {
+        $res = Di ::getInstance() -> get("REDIS") -> zincrby(\Yaconf ::get('redis.video_play'), 0, -1, "withscores");
+        return $this -> writeJson(200, 'OK', $res);
+    }
+
+
+    public function love ()
+    {
+        $videoId = intval($this -> params['videoId']);
+        if (empty($videoId)) {
+            return $this -> writeJson(Status::CODE_BAD_REQUEST, "请求不合法");
+        }
+        //对点赞数统计
+        
     }
 
     /**

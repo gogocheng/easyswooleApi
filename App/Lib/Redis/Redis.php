@@ -23,6 +23,7 @@ class Redis
 
     public $redis = "";
 
+
     private function __construct ()
     {
         if (!extension_loaded('redis')) {
@@ -44,64 +45,112 @@ class Redis
         }
     }
 
-    /**
-     * description   redis   get
-     * @param $key
-     * @return bool|string
-     */
-    public function get ($key)
-    {
-        if (empty($key)) {
-            return "";
-        }
-        $res = $this -> redis -> get($key);
-        return $res;
-    }
+//    /**
+//     * description   redis   get
+//     * @param $key
+//     * @return bool|string
+//     */
+//    public function get ($key)
+//    {
+//        if (empty($key)) {
+//            return "";
+//        }
+//        $res = $this -> redis -> get($key);
+//        return $res;
+//    }
+//
+//    /**
+//     * description   redis   set
+//     * @param $key
+//     * @return bool|string
+//     */
+//    public function set ($key, $value, $time = 0)
+//    {
+//
+//        if (!$key) {
+//            return '';
+//        }
+//        if (is_array($value)) {
+//            $value = json_encode($value);
+//        }
+//        if ($time == 0) {
+//            return $this -> redis -> set($key, $value);
+//        }
+//        //设置成用不超时
+//
+//        return $this -> redis -> setex($key, $value, $time);
+//    }
+//
+//    /**
+//     * description  redis   lpop
+//     * @param $key
+//     * @return string
+//     */
+//    public function lPop ($key)
+//    {
+//        if (empty($key)) {
+//            return "";
+//        }
+//        $res = $this -> redis -> lPop($key);
+//        return $res;
+//    }
+//
+//    /**
+//     * description  redis   rpush
+//     * @param $key
+//     * @param $value
+//     * @return bool|int|string
+//     */
+//    public function rPush ($key, $value)
+//    {
+//        if (empty($key)) {
+//            return "";
+//        }
+//        $res = $this -> redis -> rPush($key, $value);
+//        return $res;
+//    }
+//
+//    /**
+//     * description   redis   zincrby   对有序集合中指定成员的分数加上增量 increment
+//     * @param $key
+//     * @param $number
+//     * @param $member
+//     * @return bool|float
+//     */
+//    public function zincrby ($key, $number, $member)
+//    {
+//        if (empty($key) || empty($number)) {
+//            return false;
+//        }
+//        return $this -> redis -> zincrby($key, $number, $member);
+//    }
+//
+//    /**
+//     * description  返回有序集中，指定区间内的成员。
+//     * @param $key
+//     * @param $start
+//     * @param $stop
+//     * @param $type
+//     * @return array|bool
+//     */
+//    public function zrevrange111 ($key, $start, $stop, $type)
+//    {
+//        if (empty($key)) {
+//            return false;
+//        }
+//        return $this -> redis -> zrevrange($key, $start, $stop, $type);
+//    }
 
     /**
-     * description   redis   set
-     * @param $key
-     * @return bool|string
+     * description    当类中不存在该方法，直接调用call，实现底层redis相关的方法，就可以不用封装redis方法
+     * @param $name
+     * @param $arguments
+     * @return mixed
      */
-    public function set($key, $value, $time = 0) {
-        if(empty($key)) {
-            return '';
-        }
-        if(is_array($value)) {
-            $value = json_encode($value);
-        }
-        if(!$time) {
-            return $this->redis->set($key, $value);
-        }
-        return $this->redis->setex($key, $time, $value);
-    }
-
-    /**
-     * description  redis   lpop
-     * @param $key
-     * @return string
-     */
-    public function lPop ($key)
+    public function __call ($name, $arguments)
     {
-        if (empty($key)) {
-            return "";
-        }
-        $res = $this -> redis -> lPop($key);
-        return $res;
-    }
+        // TODO: Implement __call() method.
+        return $this -> redis -> $name(...$arguments);
 
-    /**
-     * description  redis   rpush
-     * @param $key
-     * @param $value
-     * @return bool|int|string
-     */
-    public function rPush ($key, $value)
-    {
-        if (empty($key)) {
-            return "";
-        }
-        $res = $this -> redis -> rPush($key, $value);
-        return $res;
     }
 }
