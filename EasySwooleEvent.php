@@ -9,6 +9,7 @@
 namespace EasySwoole;
 
 use App\Lib\Cache\Video;
+use App\Lib\Es\EsClient;
 use App\Lib\Process\ConsumerTest;
 use App\Lib\Redis\Redis;
 use \EasySwoole\Core\AbstractInterface\EventInterface;
@@ -58,6 +59,9 @@ Class EasySwooleEvent implements EventInterface
         );
         //redis
         Di ::getInstance() -> set('REDIS', Redis ::getInstance());
+
+        //es
+        Di::getInstance()->set("ES",EsClient::getInstance());
 
         //消息队列
         $allNum = 3;

@@ -1068,3 +1068,8 @@
 19-04-15 17:00:24:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
 19-04-15 17:06:17:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
 19-04-15 17:06:51:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
+19-04-18 21:39:38:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
+19-04-18 21:42:24:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
+19-04-18 21:42:25:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
+19-04-18 21:46:08:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
+19-04-18 21:55:04:Exception at file[/var/www/html/swoole/easyswoole/App/Lib/Redis/Redis.php] line[153] message:[read error on connection]
