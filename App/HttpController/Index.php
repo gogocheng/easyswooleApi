@@ -2,14 +2,16 @@
 
 namespace App\HttpController;
 
+use App\HttpController\Api\Base;
+use App\Lib\Es\EsVideo;
 use EasySwoole\Core\Http\AbstractInterface\Controller;
 use Elasticsearch\ClientBuilder;
 
-    /**
-     * Class Index
-     * @package App\HttpController
-     */
-class Index extends Controller
+/**
+ * Class Index
+ * @package App\HttpController
+ */
+class Index extends Base
 {
     /**
      * 首页方法
@@ -38,5 +40,13 @@ class Index extends Controller
     function test ()
     {
         return $this -> writeJson(200, 'ok', [ 'ab' => 123 ]);
+    }
+
+
+    public function demo ()
+    {
+        $res = (new EsVideo())->searchByName($this->params['name']);
+
+        return $this -> writeJson(200, 'ok', $res);
     }
 }
